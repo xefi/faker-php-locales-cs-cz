@@ -33,4 +33,22 @@ class PhoneExtension extends BasePhoneExtension
     {
         return 'cs_CZ';
     }
+
+    /**
+     * Generate a phone number, keeping a separator between the indicator and the number.
+     *
+     * @param string|null $format
+     * @param string      $separator
+     * @param string|null $prefix
+     *
+     * @return string
+     */
+    public function phoneNumber(?string $format = null, string $separator = '', ?string $prefix = null): string
+    {
+        if ($prefix === $this->indicator) {
+            $prefix .= $separator;
+        }
+
+        return parent::phoneNumber($format, $separator, $prefix);
+    }
 }

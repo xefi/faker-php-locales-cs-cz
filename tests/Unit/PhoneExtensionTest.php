@@ -31,4 +31,14 @@ final class PhoneExtensionTest extends TestCase
             $this->assertMatchesRegularExpression('/^\+420[2-7]\d{8}$/', $this->faker->indicatoredPhoneNumber());
         }
     }
+
+    public function testIndicatorIsSeparatedFromTheNumber(): void
+    {
+        for ($i = 0; $i < 100; $i++) {
+            $this->assertStringStartsWith('+420 ', $this->faker->spacedIndicatoredPhoneNumber());
+            $this->assertStringStartsWith('+420-', $this->faker->dashedIndicatoredPhoneNumber());
+            $this->assertStringStartsWith('+420.', $this->faker->dottedIndicatoredPhoneNumber());
+            $this->assertMatchesRegularExpression('/^\+420\d+$/', $this->faker->indicatoredPhoneNumber());
+        }
+    }
 }
